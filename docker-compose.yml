@@ -1,0 +1,11 @@
+services:
+  test:
+    image: maven:3.9-eclipse-temurin-17
+    volumes:
+      - .:/work
+      - m2:/root/.m2
+    working_dir: /work
+    command: mvn -B test
+
+volumes:
+  m2:
