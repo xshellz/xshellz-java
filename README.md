@@ -4,12 +4,20 @@ Official Java SDK for [xShellz](https://xshellz.com) sandboxes: throwaway,
 gVisor-isolated Linux boxes you can spawn and run commands in from your own
 program - in three lines.
 
+Maven:
+
 ```xml
 <dependency>
   <groupId>com.xshellz</groupId>
   <artifactId>xshellz</artifactId>
   <version>0.1.0</version>
 </dependency>
+```
+
+Gradle:
+
+```kotlin
+implementation("com.xshellz:xshellz:0.1.0")
 ```
 
 ```java
