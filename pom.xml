@@ -20,6 +20,22 @@
     </license>
   </licenses>
 
+  <developers>
+    <developer>
+      <id>xshellz</id>
+      <name>xShellz</name>
+      <email>admin@xshellz.com</email>
+      <organization>xShellz</organization>
+      <organizationUrl>https://xshellz.com</organizationUrl>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:https://github.com/xshellz/xshellz-java.git</connection>
+    <developerConnection>scm:git:git@github.com:xshellz/xshellz-java.git</developerConnection>
+    <url>https://github.com/xshellz/xshellz-java</url>
+  </scm>
+
   <properties>
     <maven.compiler.release>17</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -88,6 +104,62 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.3.1</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
+
+  <!-- Maven Central release: `mvn -B -Prelease deploy` from CI. Signing reads
+       the key from the imported GPG keyring and the passphrase from the
+       MAVEN_GPG_PASSPHRASE env var (maven-gpg-plugin bestPractices mode);
+       credentials come from the `central` server entry that setup-java writes
+       into settings.xml. Not active locally - plain builds need no keys. -->
+  <profiles>
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>3.2.4</version>
+            <configuration>
+              <bestPractices>true</bestPractices>
+            </configuration>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.sonatype.central</groupId>
+            <artifactId>central-publishing-maven-plugin</artifactId>
+            <version>0.6.0</version>
+            <extensions>true</extensions>
+            <configuration>
+              <publishingServerId>central</publishingServerId>
+              <autoPublish>true</autoPublish>
+              <waitUntil>published</waitUntil>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
