@@ -150,7 +150,9 @@
           <plugin>
             <groupId>org.sonatype.central</groupId>
             <artifactId>central-publishing-maven-plugin</artifactId>
-            <version>0.6.0</version>
+            <!-- 0.6.0 crashed on the Portal API's newer `warnings` response
+                 field after a successful publish; 0.11.0 tolerates it. -->
+            <version>0.11.0</version>
             <extensions>true</extensions>
             <configuration>
               <publishingServerId>central</publishingServerId>
