@@ -10,7 +10,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       # server-username/server-password are the NAMES of env vars that
       # setup-java references from the generated settings.xml `central` server
       # entry; the values are injected on the deploy step below. The GPG
