@@ -15,7 +15,7 @@ jobs:
       # setup-java references from the generated settings.xml `central` server
       # entry; the values are injected on the deploy step below. The GPG
       # private key is imported into the runner's keyring here.
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: "17"
