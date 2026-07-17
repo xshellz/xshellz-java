@@ -5,7 +5,7 @@ services:
       - .:/work
       - m2:/root/.m2
     working_dir: /work
-    command: mvn -B test
+    command: mvn -B verify
 
 volumes:
   m2:

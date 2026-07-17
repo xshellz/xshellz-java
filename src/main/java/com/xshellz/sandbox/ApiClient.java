@@ -21,7 +21,7 @@ import java.util.Locale;
 final class ApiClient {
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
-    private static final String USER_AGENT = "xshellz-java/0.1.0";
+    private static final String USER_AGENT = "xshellz-java/0.2.0";
 
     /**
      * 403 message fragments emitted by the control plane's guard chain. All
@@ -55,6 +55,10 @@ final class ApiClient {
 
     JsonNode post(String path, JsonNode body) {
         return request("POST", path, body);
+    }
+
+    JsonNode put(String path, JsonNode body) {
+        return request("PUT", path, body);
     }
 
     JsonNode delete(String path) {
